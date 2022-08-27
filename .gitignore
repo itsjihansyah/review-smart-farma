@@ -1,0 +1,13 @@
+.env
+Pipfile.lock
+
+__pycache__/
+*.py[cod]
+
+virtualenv
+
+.DS_Store
+
+Manual Book v1.pdf
+
+smartfarma.zip
