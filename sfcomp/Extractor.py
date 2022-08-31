@@ -41,4 +41,27 @@ def extractor(s, med_rec):
         exist.append("pilek")
         unexist.append("batuk")
 
+    #diare 
+    if bool(re.search("\s*di?a?re",s)) :
+        exist.append("diare")
+        ket_diare()
+
     return [id, dialog_status, list(set(exist)), list(set(unexist))]
+
+
+# Function2 keterangan gejala 
+def ket_diare(message) :
+    print(print)
+
+# Function2 mencari keterangan gejala 
+def cari_ket_diare (message) : 
+    pattern = ["\s*(ta?nda?)?\s*((ke)?ga?wa?td?a?r?u?r?a?(ta?n)?)?\s*ABCD","\s*((sa?ki?t)|(nye?ri))\s*pe?ru?t\s*((pa?ra?h)|(he?ba?t)|(se?ka?li?))"]
+
+
+
+#Apakah ada tanda kegawatdaruratan ABCD?
+# Apakah diare berlangsung >14 hari?
+# Apakah ada nyeri perut hebat?
+# Apakah ada pemicu obat (drug induced diarhea)
+# Apakah tinja ada darah atau seperti air cucian beras?
+# Apakah ada demam?

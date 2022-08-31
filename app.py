@@ -512,6 +512,7 @@ def create_message():
             }), 400)
 
     # Bot Analyzer function goes here
+    print(f"note app.py = {note}")
     bot_response, new_note = main_checker(message, user_session_id, note)
     
     # Update UserSessions info with new_note
