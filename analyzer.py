@@ -16,6 +16,10 @@ dialog = {
     "t_tidak_tahu":["Mohon maaf, saya tidak paham, bisa diulangi lagi?", "Maaf, apakah bisa diulang?"]
 }
 
+pertanyaan = {
+    "t_diare_dewasa" : ["Apakah ada tanda kegawatdaruratan ABCD?","Apakah diare berlangsung >14 hari?","Apakah ada nyeri perut hebat?","Apakah ada pemicu obat (drug induced diarhea)","Apakah tinja ada darah atau seperti air cucian beras?","Apakah ada demam?","Apakah ada mual muntah?","Apakah ada tanda /gejala dehidrasi"]
+}
+
 def cek_batuk(s):
     return bool(re.search("batuk", s))
         
@@ -28,9 +32,9 @@ def cek_dewasa(s):
 # s = pesan
 def main_checker(s, user_session_id=None, user_note=None):
     
-    print(f"user session id ={user_session_id}")
-    print(f"user note atas ={user_note}")
-    print(f"s ={s}")
+    print(f"user session id ={user_session_id}\n")
+    print(f"user note atas ={user_note}\n")
+    print(f"pesan (s) ={s}\n")
 
     if user_note == None:
         user_note = {"gejala_tidak":[], "gejala_ada":[]}
@@ -40,12 +44,12 @@ def main_checker(s, user_session_id=None, user_note=None):
     gejala_tidak = user_note["gejala_tidak"]
     gejala_ada = user_note["gejala_ada"]
     med_rec = [user_session_id, 0, gejala_ada, gejala_tidak]
-    print(f"med rec sebelum extractor: {med_rec}")
+    print(f"med rec sebelum extractor: {med_rec}\n")
 
     # update gejala
     med_rec = extractor(s, med_rec)
     
-    print(f"med rec setelah extractor: {med_rec}")
+    print(f"med rec setelah extractor: {med_rec}\n")
     
     # if cek_batuk(s) and not(cek_dewasa(s) or cek_anak(s)):
     #     return random.choice(dialog["t_dewasa_anak"])
@@ -56,7 +60,7 @@ def main_checker(s, user_session_id=None, user_note=None):
     # return random.choice(dialog["t_tidak_tahu"])
 
     user_note = {"gejala_ada": med_rec[2], "gejala_tidak": med_rec[3]}
-    print(f"user note bawah ={user_note}")
+    print(f"user note bawah ={user_note}\n")
     return "kamu sakit", str(user_note)
 
 # TEST
