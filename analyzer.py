@@ -25,9 +25,10 @@ def cek_batuk(s):
         
 def cek_anak(s):
     return bool(re.search("anak", s))        
-
 def cek_dewasa(s):
     return 
+
+# def cek_diare(s)
 
 # s = pesan
 def main_checker(s, user_session_id=None, user_note=None):
@@ -51,6 +52,7 @@ def main_checker(s, user_session_id=None, user_note=None):
     
     print(f"med rec setelah extractor: {med_rec}\n")
     
+
     # if cek_batuk(s) and not(cek_dewasa(s) or cek_anak(s)):
     #     return random.choice(dialog["t_dewasa_anak"])
     # if (cek_batuk(s) and cek_dewasa(s)) or cek_dewasa(s):

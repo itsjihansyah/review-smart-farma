@@ -75,8 +75,8 @@ def cari_ket_diare_dewasa (message, exist, unexist) :
     while (i <= len(pattern) -1 ) : 
         if(bool(re.search(pattern[i],message,re.IGNORECASE))) : 
             exist.append(ket_gejala[i])
-        else : 
-            unexist.append(ket_gejala[i])
+        # else : 
+        #     unexist.append(ket_gejala[i])
         
         i += 1
 
@@ -89,8 +89,8 @@ def cari_ket_demam_bayi(message, exist, unexist) :
     while (i <= len(pattern) -1 ) : 
         if(bool(re.search(pattern[i],message,re.IGNORECASE))) : 
             exist.append(ket_gejala[i])
-        else : 
-            unexist.append(ket_gejala[i])
+        # else : 
+        #     unexist.append(ket_gejala[i])
         
         i += 1
     
