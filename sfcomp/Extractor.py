@@ -50,7 +50,6 @@ def extractor(s, med_rec):
     #demam
     if bool(re.search("(demam)|(panas)|(h?ang(a|e)t)", s, re.IGNORECASE)):
         exist.append("demam")
-        cari_ket_demam(s, exist, unexist)
 
     # Mencari ket gejala semua gejala
     if(bool_dewasa) :
@@ -77,7 +76,7 @@ def cari_ket_diare_dewasa (message, exist, unexist) :
         i += 1
 
 def cari_ket_demam_bayi(message, exist, unexist) :
-   pattern = ["\s*((usia|umu?r)\s*(([0-2]\s*(bu?la?n))|(([1-9]|1[0-1])\s*minggu)))\s*(\w)*\s*((ti?da?k)|(e?n?gg?ak?)|(be?lu?m))\s*(\w)*\s*imunisa?si?",
+    pattern = ["\s*((usia|umu?r)\s*(([0-2]\s*(bu?la?n))|(([1-9]|1[0-1])\s*minggu)))\s*(\w)*\s*((ti?da?k)|(e?n?gg?ak?)|(be?lu?m))\s*(\w)*\s*imunisa?si?",
                "\s*((suhu|te?mpe?ra?tu?re?)\s*(((4[1-9])|([5-9][0-9]))\s*(de?ra?ja?t)?))|((suhu|te?mpe?ra?tu?re?)\s*(le?bi?h|le?wa?t)\s*(da?ri?)?\s*(40|empa?t\s*pu?lu?h)\s*(de?ra?ja?t)?)|((suhu|te?mpe?ra?tu?re?)\s*40\s*(de?ra?ja?t)?\s*(le?bi?h|le?wa?t))",
                "\s*((ta?nda?)|sign)?\s*((((ke)?ga?wa?td?a?r?u?r?a?((ta?n)|(t))?)?)|(eme?rge?ncy?)?)\s*ABCD","\s*(((pri?o?ri?t(y|i))\s*((ta?nda?)|sign)?)|(((ta?nda?)|sign)\s*(priorit(y|i)))\s*)|(((\w)*)\s*3tpr mob)",
                "\s*((ri?wa?ya?t|histor(i|y)?)?\s*(ke?ja?n?g)\s*(de?ma?m))|((ri?wa?ya?t|histor(i|y)?)?\s*(de?ma?m)\s*(ke?ja?n?g))",
