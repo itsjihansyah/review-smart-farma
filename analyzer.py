@@ -17,7 +17,15 @@ dialog = {
 }
 
 pertanyaan = {
-    "p_diare_dewasa" : ["Apakah ada tanda kegawatdaruratan ABCD?","Apakah diare berlangsung >14 hari?","Apakah ada nyeri perut hebat?","Apakah ada pemicu obat (drug induced diarhea)","Apakah tinja ada darah atau seperti air cucian beras?","Apakah ada demam?","Apakah ada mual muntah?","Apakah ada tanda /gejala dehidrasi"]
+    "p_diare_dewasa" : ["Apakah ada tanda kegawatdaruratan ABCD?","Apakah diare berlangsung >14 hari?","Apakah ada nyeri perut hebat?","Apakah ada pemicu obat (drug induced diarhea)","Apakah tinja ada darah atau seperti air cucian beras?","Apakah ada demam?","Apakah ada mual muntah?","Apakah ada tanda /gejala dehidrasi"],
+    
+    "p_demam_bayi": ["Kemungkinan infeksi. Sarankan ke dokter untuk mendapatkan resep antibiotik","Kemungkinan Herpes Simpleks sarankan ke dokter untuk mendapatkan resep antivirus lain.",
+    "Penghentian obat (drug induced fever) akan mengembalikan suhu tubuh dalam 72 jam", "Berikan antipiretik yang lain (parasetamol atau ibuprofen)",
+    "Menurunkan dengan kompres hangat atau antipiretik 10-15 mg/kgBB atau parasetamol diikuti kompres hangat 1 jam setelah antipiretik",
+    "Menurunkan temperatur anak dengan kompres hangat atau parasetamol", "Lanjut ke pertanyaan terkait gejala batuk pilek", "Lanjut ke pertanyaan terkait gejala diare",
+    "lanjut pert 9", "Ada kemungkinan cacar air/varisela atau campak, berikan parasetamol, tanpa penyulit, bisa sembuh sendiri (self limiting disease). Asiklovir efektif mempercepat durasi jika diberikan <24 jam",
+    "Ada kemungkinan flu singapura, berikan parasetamol dan krim antigatal, atau tablet hisap antiseptik mulut, tanpa penyulit, bisa sembuh sendiri (self limiting disease)",
+    "Kemungkinan Otitis Media, lanjutkan ke prt 23", "Kemungkinan Otitis Media tingkat lanjut, sarankan ke dokter untuk mendapatkan antibiotik", "Sarankan bedrest, paracetamol, minum yang banyak, jus jambu biji, cek trombosit atau gejala perdarahan hingga hari ke 5" ]
 }
 
 gejala = {
@@ -28,9 +36,10 @@ def cek_batuk(s):
     return bool(re.search("batuk", s))
         
 def cek_anak(s):
-    return bool(re.search("anak", s))        
+    return bool(re.search("anak", s))  
+
 def cek_dewasa(s):
-    return 
+    return bool(re.search("(dewasa)|(tua)|((1[8-9])|([2-9][0-9]) ta?hu?n)",s)) # > 18 tahun
 
 # Mencari gejala diare dewasa dan indeks terbesar keterangan gejalanya
 def cari_data_diare_dewasa(gejala_found) :
