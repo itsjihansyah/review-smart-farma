@@ -17,7 +17,11 @@ dialog = {
 }
 
 pertanyaan = {
-    "t_diare_dewasa" : ["Apakah ada tanda kegawatdaruratan ABCD?","Apakah diare berlangsung >14 hari?","Apakah ada nyeri perut hebat?","Apakah ada pemicu obat (drug induced diarhea)","Apakah tinja ada darah atau seperti air cucian beras?","Apakah ada demam?","Apakah ada mual muntah?","Apakah ada tanda /gejala dehidrasi"]
+    "p_diare_dewasa" : ["Apakah ada tanda kegawatdaruratan ABCD?","Apakah diare berlangsung >14 hari?","Apakah ada nyeri perut hebat?","Apakah ada pemicu obat (drug induced diarhea)","Apakah tinja ada darah atau seperti air cucian beras?","Apakah ada demam?","Apakah ada mual muntah?","Apakah ada tanda /gejala dehidrasi"]
+}
+
+gejala = {
+    "g_diare_dewasa": ["k_darurat ABCD","k_diare > 14 hari","k_nyeri perut hebat","k_ada drug induced diarhea","k_tinja berdarah/spt cucian beras","k_demam","k_mual muntah","k_dehidrasi"]
 }
 
 def cek_batuk(s):
@@ -28,6 +32,28 @@ def cek_anak(s):
 def cek_dewasa(s):
     return 
 
+# Mencari gejala diare dewasa dan indeks terbesar keterangan gejalanya
+def cari_data_diare_dewasa(gejala_found) :
+    indeks_terbesar = 0
+    for i in range(0, len(gejala_found)):
+        gejala_pasien = gejala_found[i]
+        for k in range(0, len(gejala["g_diare_dewasa"])):
+            ket_gejala =  gejala["g_diare_dewasa"][k]
+            if(gejala_pasien == ket_gejala) : 
+                indeks_terbesar = k
+
+    return indeks_terbesar
+
+# Mengembalikan pertanyaan2 utk mencari data gejala diare dewasa
+def tanya_diare_dewasa (indeks) :
+    hasil_indeks = 0
+
+    for i in range(indeks, 1): 
+        hasil_indeks = i
+    
+    hasil_pertanyaan = pertanyaan["p_diare_dewasa"][hasil_indeks] 
+    return hasil_pertanyaan
+        
 # def cek_diare(s)
 
 # s = pesan
@@ -49,9 +75,11 @@ def main_checker(s, user_session_id=None, user_note=None):
 
     # update gejala
     med_rec = extractor(s, med_rec)
+
+    gejala_ada_list = med_rec[2]
     
     print(f"med rec setelah extractor: {med_rec}\n")
-    
+    print(f"med_rec[2] = {med_rec[2]}")
 
     # if cek_batuk(s) and not(cek_dewasa(s) or cek_anak(s)):
     #     return random.choice(dialog["t_dewasa_anak"])
@@ -63,7 +91,11 @@ def main_checker(s, user_session_id=None, user_note=None):
 
     user_note = {"gejala_ada": med_rec[2], "gejala_tidak": med_rec[3]}
     print(f"user note bawah ={user_note}\n")
-    return "kamu sakit", str(user_note)
+
+    indeks =cari_data_diare_dewasa(gejala_ada_list)
+    hasil_pertanyaan = tanya_diare_dewasa(indeks)
+
+    return hasil_pertanyaan, str(user_note)
 
 # TEST
 # main_checker("ada orang dewasa batuk", 1)
