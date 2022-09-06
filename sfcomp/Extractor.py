@@ -21,9 +21,9 @@ def extractor(s, med_rec):
     if med_rec[2]!=None:
         exist = med_rec[2]
 
-    bool_dewasa = re.search("\s*de?wa?sa?", s, re.IGNORECASE)
-    bool_anak = re.search("\s*(ana?k(\s*2|(-|\s*)\s*ana?k))", s, re.IGNORECASE)
-    bool_bayi = re.search("\s*bayi",s,re.IGNORECASE)
+    bool_dewasa = re.search("\s*((de?wa?sa?)|(remaja))|((umur|usia)\s*((1[3-9])|([2-9][0-9])|(1[0-9][0-9]))\s*(tah?u?n)?)", s, re.IGNORECASE)
+    bool_anak = re.search("\s*(ana?k(\s*2|(-|\s*)\s*ana?k))|((umur|usia)\s*(([1-9])|(1[0-2]))\s*(ta?hu?n))", s, re.IGNORECASE)
+    bool_bayi = re.search("\s*(bayi?)|((umur|usia)\s*((([0-9])|([1-4][0-9])|(5[0-2]))\s*minggu))|((umur|usia)\s*((([0-9])|(1[0-2]))\s*bu?la?n))|((umur|usia)\s*((([0-9])|([1-2][0-9]))\s*hari))",s,re.IGNORECASE)
 
     # dewasa-anak
     if (bool_dewasa):
@@ -49,7 +49,7 @@ def extractor(s, med_rec):
     
     #demam
     if bool(re.search("(demam)|(panas)|(h?ang(a|e)t)", s, re.IGNORECASE)):
-        exist.append("demam")
+        exist.append("g_demam")
 
     # Mencari ket gejala semua gejala
     if(bool_dewasa) :
