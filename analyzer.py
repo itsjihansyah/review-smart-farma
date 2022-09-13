@@ -107,4 +107,4 @@ def main_checker(s, user_session_id=None, user_note=None):
     return hasil_pertanyaan, str(user_note)
 
 # TEST
-# main_checker("ada orang dewasa batuk", 1)
+main_checker("umur 14 tahun, panas 7 hari belum turun", 1)
